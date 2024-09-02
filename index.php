@@ -1,3 +1,23 @@
+<?php
+  session_start();
+
+  require 'db.php';
+
+  if (isset($_SESSION['user_id'])) {
+    $records = $conn->prepare('SELECT id, email, password FROM user WHERE id = :id');
+    $records->bindParam(':id', $_SESSION['user_id']);
+    $records->execute();
+
+    $results = $records->fetch(PDO::FETCH_ASSOC);
+
+    $user = null;
+    
+    if (count($results) > 0) {
+      $user = $results;
+    }
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,9 +30,16 @@
 <body>
   <?php require 'fragments/header.php'?>
 
-  <h1>LogIn o SignUp</h1>
-
-  <a href="login.php">LogIn</a>
-  <a href="signup.php">SignUp</a>
+  <?php
+  if (!empty($user)): ?>
+    <br>Bienvenido. <?= $user['email'] ?>
+    <br>Ha ingresado a su perfil 
+    <a href="logout.php">LogOut</a>
+  <?php else: ?>
+    <h1>LogIn o SignUp</h1>
+    
+    <a href="login.php">LogIn</a>
+    <a href="signup.php">SignUp</a>
+  <?php endif; ?>
 </body>
 </html>
