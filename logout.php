@@ -5,6 +5,6 @@
 
   session_destroy();
 
-  header("Location: login.php"); 
+  header("Location: /php-login"); 
 
 ?>
