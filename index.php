@@ -4,7 +4,7 @@
   require 'db.php';
 
   if (isset($_SESSION['user_id'])) {
-    $records = $conn->prepare('SELECT id, email, password FROM user WHERE id = :id');
+    $records = $conn->prepare('SELECT id, email, password FROM users WHERE id = :id;');
     $records->bindParam(':id', $_SESSION['user_id']);
     $records->execute();
 
@@ -34,7 +34,7 @@
   if (!empty($user)): ?>
     <br>Bienvenido. <?= $user['email'] ?>
     <br>Ha ingresado a su perfil 
-    <a href="logout.php">LogOut</a>
+    <a href="logout.php">Log out</a>
   <?php else: ?>
     <h1>LogIn o SignUp</h1>
     
