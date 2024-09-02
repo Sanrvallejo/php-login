@@ -43,3 +43,22 @@ header a {
   text-decoration: none;
   color: #333;
 }
+
+table {
+  margin-left: 25%;
+  border-collapse: collapse;
+  width: auto;
+}
+
+table, th, td {
+  border: 1px solid #ccc;
+}
+
+th, td {
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background-color: #f2f2f2;
+}
