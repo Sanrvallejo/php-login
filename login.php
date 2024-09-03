@@ -18,7 +18,7 @@
 
     $message = '';
 
-    if (count($results) > 0 && password_verify($_POST['password'], $results['password'])) {
+    if (!empty($results) > 0 && password_verify($_POST['password'], $results['password'])) {
       $_SESSION['user_id'] = $results['id'];
       header('Location: /php-login');
     }else {
@@ -46,6 +46,7 @@
 
   <?php if (!empty($message)): ?>
     <p><?php= $message ?></p>
+    <p>Usuario o contraseña incorrecta</p>
   <?php endif; ?>
 
   <form action="login.php" method="POST">
